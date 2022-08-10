@@ -18,18 +18,13 @@ services:
     # Then in terminal launching docker-compose by comand "docker-compose up"
     #
   rabbit_mq:
-    #название контейнера
-    container_name: rabbit_mq
+    container_name: container_rabbit_mq
     # container ports availible to connect
     ports: 
-    - "5432:5432" # Default port of postgresql (can be changed)
+    - "5672:5672" # TODO @mudor-mt-dm needs to install correct ports
     environment:
-    # environment variables we can send from here
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=root
+    # TODO @mudor-mt-dm needs to set username and password for rabbitMQ
+      - RABBITMQ_DEFAULT_USER=user 
+      - RABBITMQ_DEFAULT_PASS=password
     # linux+postgre image from here https://hub.docker.com/_/postgres/tags
-    image: postgres:14.3-alpine3.16
-    
-    ###################################################
-    # Then in terminal launching docker-compose by comand "docker-compose up"
-    #
+    image: rabbitmq:3.9-alpine
