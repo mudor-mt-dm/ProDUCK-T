@@ -1,0 +1,35 @@
+version: '3.5'
+
+services:
+  #название сервиса
+  db_auth:
+    #название контейнера
+    container_name: container_db_auth
+    # container ports availible to connect
+    ports: 
+    - "5432:5432" # Default port of postgresql (can be changed)
+    environment:
+    # environment variables we can send from here
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=root
+    # linux+postgre image from here https://hub.docker.com/_/postgres/tags
+    image: postgres:14.3-alpine3.16
+    ###################################################
+    # Then in terminal launching docker-compose by comand "docker-compose up"
+    #
+  rabbit_mq:
+    #название контейнера
+    container_name: rabbit_mq
+    # container ports availible to connect
+    ports: 
+    - "5432:5432" # Default port of postgresql (can be changed)
+    environment:
+    # environment variables we can send from here
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=root
+    # linux+postgre image from here https://hub.docker.com/_/postgres/tags
+    image: postgres:14.3-alpine3.16
+    
+    ###################################################
+    # Then in terminal launching docker-compose by comand "docker-compose up"
+    #
