@@ -3,7 +3,7 @@ version: '3.8'
 services:
   my-app:
     build: ./
-    command: wait-for_postgres.sh db ./my-app #название скомпилированного файла приложения
+    command: ./my-app #название скомпилированного файла приложения
     ports:
       - 8000:8000
     depends_on:
