@@ -1,17 +1,25 @@
-version: '3.5'
+version: '3.8'
 
 services:
-  #название сервиса
-  db_auth:
+  my-app:
+    build: ./
+    command: wait-for_postgres.sh db ./my-app #название скомпилированного файла приложения
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    environment:
+      - DB_PASSWORD=qwerty
+  db:
+    restart: always #Означает, что данный контейнер перезапускается всегда (при запуске докера, или компьютера)
     #название контейнера
-    container_name: container_db_auth
-    # container ports availible to connect
+    volumes:
+      - ./.database/postgres/data:var/lib/postgresql/data
     ports: 
     - "5432:5432" # Default port of postgresql (can be changed)
     environment:
     # environment variables we can send from here
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=root
+      - DB_PASSWORD=qwerty
     # linux+postgre image from here https://hub.docker.com/_/postgres/tags
     image: postgres:14.3-alpine3.16
     ###################################################
