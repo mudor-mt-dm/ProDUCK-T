@@ -1,19 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+)
+
+func Handler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("<b>Hellow<b> <i>Orld!<i>\n"))
+}
 
 func main() {
-	var Ali string = "Here"
-	var Name, Age = "Bear", 12
-	var c = fmt.Sprintf(Name, Age)
-	fmt.Println("Hellow Orld#3")
-	fmt.Println(c)
-	fmt.Println("Print your name plz:")
-	fmt.Scanln(&Name)
-	fmt.Println("You entered:" + Name)
-
-	var Foo int = 123
-	var result string
-	result = fmt.Sprintf("Ёбаные якоря %d %s", Foo, Ali)
-	fmt.Println(result)
+	http.HandleFunc("/", Handler)
+	log.Println("Start http server on port 8081")
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }
