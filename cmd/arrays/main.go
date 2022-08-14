@@ -1,1 +1,3 @@
-package arrays
+package main
+
+// Здесь потестируем всякие массивы
